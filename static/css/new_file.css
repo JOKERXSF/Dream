@@ -1,0 +1,82 @@
+
+#introduce {
+	font-size: 23px;
+	color: #190053;
+	margin-top: 3%;
+}
+
+.login {
+	width: 500px;
+	height: 300px;
+	border: 1px salmon;
+	
+	/* 页面留白 */
+	margin: auto;
+	margin-top: 5%;
+	/* 阴影 */
+	box-shadow: 10px 10px 10px pink;
+	/* 登陆模块 */
+	text-align: center;
+	border-radius: 10px;
+	padding: 50px 50px;
+	background-color: #332B3780;
+
+}
+
+#login-logo {
+	/* 登录字设置 */
+	font-size: 1cm;
+	text-align: center;
+	color: #ffffff90;
+}
+#register{
+	font-size: 5px;
+}
+#login-box_sub {
+	margin-top: 5%;
+}
+
+#register{
+	font-size: 1em;
+}
+
+
+input {
+	/* 无边框 */
+	border: 0;
+	width: 60%;
+	/* 输入信息大小颜色 */
+	font-size: 15px;
+	color: #fff;
+	/* 账号密码框背景透明 */
+	background: transparent;
+	border-bottom: 3px solid #fff;
+	padding: 10px 10px;
+	outline: none;
+	margin-top: 10px;
+}
+
+button {
+	/* 按钮大小及边框 */
+	margin-top: 50px;
+	width: 60%;
+	height: 40px;
+	border-radius: 10px;
+	border: 0;
+	/* 字体颜色 */
+	color: #fff;
+	text-align: center;
+	line-height: 30px;
+	font-size: 20px;
+	background-image: linear-gradient(to right, #8f43eb, #00d9f1);
+	
+}
+
+body {
+
+	/* 背景透明度置 */
+	background: linear-gradient(rgba(231, 229, 213, 0.4), rgba(231, 229, 213, 0.4)), url(../img/背景图.jpg);
+	background-size: 1920px;
+	backgroud-repeat: repeat;
+	background-attachment: fixed;
+}
