@@ -1,74 +1,57 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" sizes="any" mask="" href="/static/img/标签页ico.jpg">
-		<!-- 网页小标签 -->
-		<title>梦想通登录界面</title>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+{#    <meta http-equiv="X-UA-Compatible" content="IE=edge">#}
 
-		<link rel="stylesheet" href="/static/css/new_file.css">
-
-	</head>
-
-
-	<body>
-		<!-- 首页顶端 -->
-		<!-- 		<div id="decorate">
-			<p style="height: 70px" align="center">dream</p>
-		</div> -->
-
-		<!-- 简洁的自我介绍 -->
-		<div id="introduce" align="center">
-			<h2>
-				值得信赖的招聘信息统计平台
-			</h2>
-
-			<h3 align="center">
-				realize your dream
-			</h3>
-		</div>
-		<!-- 分割线换行 -->
-		<hr>
-		<br>
-
-		<!-- 详细的自我介绍以及功能介绍，跳转？锚链接？ -->
-		<!-- <div id="function">
-			<ul>
-				<a href="#">关于我们 </a>
-				<a href="#">主要功能 </a>
-				<br>
-		</div> -->
-
-		</ul>
-
-		<!-- 登录界面主体 -->
-		<div class="login">
-			<div id="login-logo">登录
-
-			</div>
-
-			<hr>
-			<form action="/login" method="get">
-
-				<div id="login-box_sub">
-					<input name="uid" placeholder="请输入账号" />
-				</div>
-
-				<div id="login-box_pw">
-					<input name="pwd" type="password" placeholder="请输入密码" />
-				</div>
-
-				<button>登录</button><br><br>
-				<!-- <input type="submit" /> -->
-				<div id="login">
-                    <a href="/Dreamapp/registry">没有账号？注册一个！</a>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登陆</title>
+    <link rel="icon" sizes="any" mask="" href="/static/img/标签页ico.jpg">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container" id="container">
+        <!--<div class="form-container sign-up-container">
+            <form action="#">
+                <h1>用户注册</h1>
+                <input type="text" placeholder="用户名">
+                <input type="password" placeholder="密码">
+                <input type="email" placeholder="邮箱">
+                <button id="send_code">发送验证码</button>
+                <input type="email" placeholder="验证码">
+                <button>注册</button>
+            </form>
+        </div>-->
+        <div class="form-container sing-in-container">
+            <form action="/login" method="get">
+                <h1>用户登陆</h1>
+                <!--<div class="social-container">
+                    <a href="#" class="social"><i class="iconfont icon-qq"></i></a>
+                    <a href="#" class="social"><i class="iconfont icon-weixin"></i></a>
+                    <a href="#" class="social"><i class="iconfont icon-weibo-copy"></i></a>
+                    <a href="#" class="social"><i class="iconfont icon-github"></i></a>
+                </div>-->
+                <!--<span>您可以选择以上几种方式登陆您的账户!</span>-->
+                <input type="text" placeholder="用户名">
+                <input type="password" placeholder="密码">
+                <a href="#">忘记密码?</a>
+                <button>登陆</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <!--<div class="overlay-pannel overlay-left">
+                    <h1>已有账号?</h1>
+                    <p>亲爱的快快点我去进行登陆吧。</p>
+                    <button class="ghost" id="signIn">登陆</button>
+                </div>-->
+                <div class="overlay-pannel overlay-right">
+                    <h1>没有帐号？</h1>
+                    <p>点击注册去注册一个属于你的账号吧。</p>
+                    <a href="/Dreamapp/registry"><button class="ghost" id="signUp">注册</button></a>
                 </div>
-
-			</form>
-		</div>
-	
-		<br>
-
-		<!-- <img src="../img/页面内小狗图像.jpg" width="100%" title="我们的标签" /> -->
-	</body>
+            </div>
+        </div>
+    </div>
+</body>
 </html>

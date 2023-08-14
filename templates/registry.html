@@ -1,61 +1,50 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<link rel="icon" sizes="any" mask="" href="/static/img/标签页ico.jpg">
-		<!-- 网页小标签 -->
-		<title>梦想通注册界面</title>
-		<link rel="stylesheet" href="/static/css/注册界面.css">
-	</head>
-	<body>
-		<!-- <div id="introduce" align="center">
-			<h2>
-				值得信赖的招聘信息统计平台
-			</h2>
-		
-			<h3 align="center">
-				realize your dream
-			</h3>
-		</div> -->
-		<!-- 分割线换行 -->
-		<hr>
-		<br>
-		
-		<!-- 详细的自我介绍以及功能介绍，跳转？锚链接？ -->
-		<!-- <div id="function">
-			<ul>
-				<a href="#">关于我们 </a>
-				<a href="#">主要功能 </a>
-				<br>
-		</div> -->
-		
-		</ul>
-		
-		<!-- 登录界面主体 -->
-		<div class="login">
-			<div id="login-logo">注册
-		
-			</div>
-		
-			<hr>
-			<form action="/login" method="get">
-		
-				<div id="login-box_sub">
-					<input name="uid" placeholder="请输入账号" />
-				</div>
-		
-				<div id="login-box_pw">
-					<input name="pwd" type="password" placeholder="请输入密码" />
-				</div>
-		
-				<button>注册</button><br><br>
-				<!-- <input type="submit" /> -->
-				<div id="registry">
-                    <a href="/Dreamapp/login">已有账号？点击登录！</a>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册</title>
+    <link rel="icon" sizes="any" mask="" href="/static/img/标签页ico.jpg">
+    <link rel="stylesheet" href="/static/css/style1.css" />
+</head>
+<body>
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form method="post" role="form" id="form_register">
+                <h1>用户注册</h1>
+                <input type="text" placeholder="用户名">
+                <input type="password" placeholder="密码">
+                <input type="email" placeholder="邮箱">
+                <button id="send_code">发送验证码</button>
+                <input type="email" placeholder="验证码">
+                <button>注册</button>
+            </form>
+        </div>
+        <!--<div class="form-container sing-in-container">
+            <form action="#">
+                <h1>用户登陆</h1>
+                <span>您可以选择以上几种方式登陆您的账户!</span>
+                <input type="text" placeholder="用户名">
+                <input type="password" placeholder="密码">
+                <a href="#">忘记密码?</a>
+                <button>登陆</button>
+            </form>
+        </div>-->
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-pannel overlay-left">
+                    <h1>已有账号?</h1>
+                    <p>亲爱的快快点我去进行登陆吧。</p>
+                    <a href="/Dreamapp/login" ><button class="ghost" id="signIn">登陆</button></a>
                 </div>
-			</form>
-		</div>
-			
-		<br>
-	</body>
+                <!--<div class="overlay-pannel overlay-right">
+                    <h1>没有帐号？</h1>
+                    <p>点击注册去注册一个属于你的账号吧。</p>
+                    <button class="ghost" id="signUp">注册</button>
+                </div>-->
+            </div>
+        </div>
+    </div>
+</body>
 </html>

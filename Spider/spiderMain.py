@@ -270,9 +270,9 @@ class spider(object):
 # "dist"行政区
 
 if __name__ == "__main__":
-    spiderObj = spider('java',1)
-    # spiderObj.init()
-    # spiderObj.main(10)
-    spiderObj.save_to_sql()
+    spiderObj = spider('Python',1)
+    spiderObj.init()
+    spiderObj.main(10)
+    # spiderObj.save_to_sql()
     # JobInfo.objects.all()
 
