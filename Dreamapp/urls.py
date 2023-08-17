@@ -9,6 +9,6 @@ urlpatterns = [
     #path('password_reset/',views.reset_password_confirm,name='reset_password_confirm'),
     path('home/',views.home,name='home'),
     path('reset_password/',views.reset_password,name='reset_password'),
-
+    path('logOut/',views.logOut,name="logOut"),
 
 ]

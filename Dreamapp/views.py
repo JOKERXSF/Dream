@@ -12,13 +12,29 @@ from django.template import loader, Context
 from . import ut
 from django.core.mail import send_mail, send_mass_mail
 import hashlib
+from .utils import getHomeData
 
 
 # Create your views here.
+# 主界面跳转
+
+
 def home(request):
-    return render(request, 'index.html')
+    uname = request.session.get('username')
+    userInfo = User.objects.get(username=uname)
+    year, month, day = getHomeData.getNowTime()
+    print(year, month, day)
+    return render(request, 'index.html', {
+        'userInfo': userInfo,
+        'dateInfo': {
+            'year': year,
+            'month': month,
+            'day': day
+        }
+    })
 
 
+# 登录界面
 def login(request):
     if request.method == 'POST':
         uname = request.POST.get('username')
@@ -31,6 +47,7 @@ def login(request):
         print(user)
 
         if user is not None:
+            request.session['username'] = user.username
             return redirect('/Dreamapp/home/')
         else:
             return redirect('/Dreamapp/login/')
@@ -79,6 +96,7 @@ def login(request):
 #             return JsonResponse(res)
 
 
+# 注册界面
 class registryView(View):
 
     def get(self, request):
@@ -135,7 +153,7 @@ class registryView(View):
 #             res['status'] = '1'
 #
 #         return JsonResponse(res)
-
+# 发送邮箱
 def reset_password(request):
     if request.method == 'POST':
         email = request.POST.get('email')
@@ -170,6 +188,7 @@ def reset_password(request):
     return render(request, 'reset_password.html')
 
 
+# 邮箱验证界面
 def reset_password_confirm(request, user_pk, token):
     serializer = Serializer(settings.SECRET_KEY, expires_in=3600)
     try:
@@ -193,7 +212,13 @@ def reset_password_confirm(request, user_pk, token):
         user.password = password
         user.save()
 
-        #密码重置成功的处理逻辑
+        # 密码重置成功的处理逻辑
         return redirect('/Dreamapp/login')
 
     return render(request, 'reset_password_confirm.html', {'user_pk': user_pk, 'token': token})
+
+
+# 登出
+def logOut(request):
+    request.session.clear()
+    return redirect('login')
