@@ -77,6 +77,17 @@ a{
     opacity: 0.8;
 }
 
+.form-container div{
+    width: 100%;
+    height: 2.2rem;
+    text-indent: 1rem;
+    border: 1px solid #ccc;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    outline: none;
+    margin: 0.6rem 0;
+}
 .form-container input{
     width: 100%;
     height: 2.2rem;

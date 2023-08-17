@@ -13,13 +13,7 @@ var neonLogin = neonLogin || {};
 	$(document).ready(function()
 	{
 		neonLogin.$container = $("#form_login");
-		
-		
 
-		
-		
-		
-		
 		// Lockscreen & Validation
 		var is_lockscreen = $(".login-page").hasClass('is-lockscreen');
 		
@@ -255,7 +249,7 @@ var neonLogin = neonLogin || {};
 			
 			// Create Progress Circle
 			var bg = neonLogin.lockscreen_progress_canvas,
-				ctx = ctx = bg.getContext('2d'),
+				ctx = bg.getContext('2d'),
 				imd = null,
 				circ = Math.PI * 2,
 				quart = Math.PI / 2,

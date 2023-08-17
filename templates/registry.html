@@ -7,30 +7,41 @@
     <title>注册</title>
     <link rel="icon" sizes="any" mask="" href="/static/img/标签页ico.jpg">
     <link rel="stylesheet" href="/static/css/style1.css" />
+    <script src="/static/js/jquery-3.4.1.min.js"></script>
 </head>
 <body>
     <div class="container" id="container">
         <div class="form-container sign-up-container">
-            <form method="post" role="form" id="form_register">
+            <form  role="form" id="form_register">
                 <h1>用户注册</h1>
-                <input type="text" placeholder="用户名">
-                <input type="password" placeholder="密码">
-                <input type="email" placeholder="邮箱">
-                <button id="send_code">发送验证码</button>
-                <input type="email" placeholder="验证码">
-                <button>注册</button>
+                <input type="text" class="form-control" id="username_id" name="username" placeholder="用户名"
+                       onblur="checkUsername()" data-mask="[a-zA-Z0-1\.]+" data-is-regex="true"
+                       autocomplete="off" >
+                <span id="span_username"></span>
+
+
+                <input type="email" class="form-control" id="email_id" name="email"
+                       placeholder="邮箱" autocomplete="off" onblur="checkEmail()">
+                <span id="span_email"></span>
+
+
+                <input type="password" class="form-control" id="password_id" name="password"
+                       placeholder="密码" autocomplete="off" onblur="checkPassword()">
+                <span id="span_password"></span>
+
+
+                <input type="password" class="form-control" id="repassword_id" name="repassword"
+                       placeholder="确认密码" autocomplete="off" onblur="checkrePassword()">
+                <span id="span_repassword"></span>
+
+
+
+                <!--<button id="send_code">发送验证码</button>-->
+
+                <button id = "register_id">注册</button>
             </form>
         </div>
-        <!--<div class="form-container sing-in-container">
-            <form action="#">
-                <h1>用户登陆</h1>
-                <span>您可以选择以上几种方式登陆您的账户!</span>
-                <input type="text" placeholder="用户名">
-                <input type="password" placeholder="密码">
-                <a href="#">忘记密码?</a>
-                <button>登陆</button>
-            </form>
-        </div>-->
+
         <div class="overlay-container">
             <div class="overlay">
                 <div class="overlay-pannel overlay-left">
@@ -38,13 +49,105 @@
                     <p>亲爱的快快点我去进行登陆吧。</p>
                     <a href="/Dreamapp/login" ><button class="ghost" id="signIn">登陆</button></a>
                 </div>
-                <!--<div class="overlay-pannel overlay-right">
-                    <h1>没有帐号？</h1>
-                    <p>点击注册去注册一个属于你的账号吧。</p>
-                    <button class="ghost" id="signUp">注册</button>
-                </div>-->
+
             </div>
         </div>
     </div>
+    <script src="/static/js/neon-register.js"></script>
 </body>
+<script>
+    function checkUsername(){
+        let username = $('#username_id').val();
+              if(username.length < 6){
+                $('#span_username').html('未通过校验,长度小于6').css("color","red")
+                return false;
+        }
+        else {
+                 return $.getJSON('/Dreamapp/checkuname',{username:username},function (data){
+                if(data.msg == null){
+                    $('#span_username').html('恭喜您，用户名可用').css("color","green")
+                    return true;
+                }
+                else{
+                    $("#span_username").html('该用户已注册').css("color","red")
+                    return false;
+                }
+            })
+        }
+    }
+
+    function checkEmail(){
+        var reg = new RegExp("^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$")
+        var email = $("#email_id").val();
+        if(email === ""){
+            $('#span_email').html('邮箱不能为空').css("color","red")
+            return false;
+        }else if(!reg.test(email)){
+            $('#span_email').html('邮箱格式不正确').css("color","red")
+            return false;
+        }else {
+            $('#span_email').html('邮箱验证通过').css("color","green")
+            return true;
+        }
+    }
+
+    function checkPassword(){
+        var pwd = $("#password_id").val();
+        var p = new RegExp("^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{4,23}$");
+        if(pwd === ""){
+            $("#span_password").html('密码不能为空').css("color","red")
+            return false;
+        }
+        else if(!p.test(pwd)){
+            $("#span_password").html('密码必须由字母和数字组合').css("color","red")
+            return false;
+        }else{
+            $("#span_password").html('密码校验通过').css("color",'green')
+            return true;
+        }
+    }
+    function checkrePassword(){
+        var repwd = $("#repassword_id").val();
+        var pwd = $("#password_id").val();
+        if(repwd === ""){
+            $("#span_repassword").html('密码不能为空').css("color","red")
+            return false;
+        }
+        else if(repwd === pwd){
+            $("#span_repassword").html('密码校验通过').css("color","green")
+            return true;
+        }else{
+            $("#span_repassword").html('二次密码不一致').css("color",'red')
+            return false;
+        }
+    }
+
+    $('#register_id').click(function (){
+        var res = checkEmail() && checkPassword() && checkUsername() && checkrePassword();
+
+        if(res === true){
+
+            $.ajax({
+                url:'/Dreamapp/registry/',
+                type:'post',
+                async : false,
+                data:{
+                    "username":$("#username_id").val(),
+                    "pwd":$("#password_id").val(),
+                    "email":$("#email_id").val(),
+                    "csrfmiddlewaretoken":$("[name='csrfmiddlewaretoken']").val()
+                },
+                success:function (data){
+                    console.log(data)
+                    if(data.msg === null){
+                        alert("注册cg")
+                        location.href = '/Dreamapp/login/'
+                    }else{
+                        alert("注册失败")
+                    }
+                }
+            })
+        }
+    })
+</script>
 </html>

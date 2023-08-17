@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
     <meta charset="UTF-8">
-{#    <meta http-equiv="X-UA-Compatible" content="IE=edge">#}
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>登陆</title>
     <link rel="icon" sizes="any" mask="" href="/static/img/标签页ico.jpg">
     <link rel="stylesheet" href="/static/css/style.css">
+    <script src="/static/js/jquery-3.4.1.min.js"></script>
+    <script src="/static/js/jquery-1.11.0.min.js"></script>
 </head>
 <body>
     <div class="container" id="container">
@@ -23,7 +23,8 @@
             </form>
         </div>-->
         <div class="form-container sing-in-container">
-            <form action="/login" method="get">
+            <form action="/Dreamapp/login/" method="POST">
+                {% csrf_token %}
                 <h1>用户登陆</h1>
                 <!--<div class="social-container">
                     <a href="#" class="social"><i class="iconfont icon-qq"></i></a>
@@ -32,10 +33,12 @@
                     <a href="#" class="social"><i class="iconfont icon-github"></i></a>
                 </div>-->
                 <!--<span>您可以选择以上几种方式登陆您的账户!</span>-->
-                <input type="text" placeholder="用户名">
-                <input type="password" placeholder="密码">
-                <a href="#">忘记密码?</a>
-                <button>登陆</button>
+                <input type="text" name="username" id="user_id" placeholder="用户名">
+
+                <input type="password" name="password" placeholder="密码">
+                <a class="login-a" href="/Dreamapp/reset_password/">忘记密码?</a>
+                <button type="submit" class="btn btn-primary btn-block btn-login" id = "login_id" >登陆</button>
+                <span id="span_login"></span>
             </form>
         </div>
         <div class="overlay-container">
@@ -54,4 +57,5 @@
         </div>
     </div>
 </body>
+
 </html>
