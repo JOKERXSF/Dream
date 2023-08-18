@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Neon Admin Panel">
+    <meta name="author" content="">
+
+    <title>数据分析</title>
+
+    <link rel="icon" sizes="any" mask="" href="/static/img/标签页ico.jpg">
+    <link rel="stylesheet" href="/static/css/jquery-ui-1.10.3.custom.min.css">
+    <link rel="stylesheet" href="/static/css/entypo.css">
+    <link rel="stylesheet" href="/static/css/css.css">
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/css/neon-core.css">
+    <link rel="stylesheet" href="/static/css/neon-theme.css">
+    <link rel="stylesheet" href="/static/css/neon-forms.css">
+    <link rel="stylesheet" href="/static/css/custom.css">
+
+    <script src="/static/js/jquery-1.11.0.min.js"></script>
+    <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script>
+    <!--[if lt IE 9]>
+    <script src="/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+</head>
+<body class="page-body  page-fade" data-url="http://sc.chinaz.com">
+
+<div class="page-container">
+    <!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
+
+    <div class="sidebar-menu" style="background-color:#666db373">
+
+
+        <header class="logo-env">
+            <div class="logo">
+                <a href="index.html">
+                    <h3 style="color: #FFFFFF;font-weight: bold;margin-top: 5px">梦想通招聘分析</h3>
+                </a>
+            </div>
+        </header>
+
+
+        <div class="sidebar-user-info">
+
+            <div class="sui-normal">
+                <a href="#" class="user-link">
+                    <img style="width: 90%;border-radius: 50%" src="/media/{{ userInfo.avatar }}" width="120" alt="">
+                    <span style="color: #FFFFFF;padding-top: 209px;text-align: center">欢迎您！</span>
+                    <strong style="text-align: center;margin-top: 5px">{{ userInfo.username }}</strong>
+                </a>
+            </div>
+
+            <div class="sui-hover inline-links animate-in">
+                <!-- You can remove "inline-links" class to make links appear vertically, class "animate-in" will make A elements animateable when click on user profile -->
+                <a href="#">
+                    <i class="entypo-pencil"></i>
+                    New Page
+                </a>
+
+                <a href="mailbox.html">
+                    <i class="entypo-mail"></i>
+                    Inbox
+                </a>
+
+                <a href="extra-lockscreen.html">
+                    <i class="entypo-lock"></i>
+                    Log Off
+                </a>
+
+                <span class="close-sui-popup">&times;</span><!-- this is mandatory -->            </div>
+        </div>
+
+
+        <ul id="main-menu" class="">
+            <!-- add class "multiple-expanded" to allow multiple submenus to open -->
+            <!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
+            <!-- Search Bar -->
+
+            <li>
+                <a href="/Dreamapp/home">
+                    <i class="entypo-gauge"></i>
+                    <span>首页</span>
+                </a>
+
+            </li>
+            <li>
+                <a href="layout-api.html">
+                    <i class="entypo-layout"></i>
+                    <span>个人中心</span>
+                </a>
+                <ul>
+                    <li>
+                        <a href="/Dreamapp/selfInfo">
+                            <span>个人信息</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/Dreamapp/changePassword">
+                            <span>修改密码</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+
+            <li class="active opened active">
+                <a href="ui-panels.html">
+                    <i class="entypo-newspaper"></i>
+                    <span>数据分析</span>
+                </a>
+                <ul>
+                    <li>
+                        <a href="ui-panels.html">
+                            <span>数据总览</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="ui-tiles.html">
+                            <span>薪资情况</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/Dreamapp/company">
+                            <span>企业情况</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="ui-typography.html">
+                            <span>学历分布</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/Dreamapp/companyTags">
+                            <span>福利词云</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="ui-tooltips-popovers.html">
+                            <span>历史查询</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+            <li>
+                <a href="mailbox.html">
+                    <i class="entypo-mail"></i>
+                    <span>Mailbox</span>
+
+                </a>
+                <ul>
+                    <li>
+                        <a href="mailbox.html">
+                            <i class="entypo-inbox"></i>
+                            <span>Inbox</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mailbox-compose.html">
+                            <i class="entypo-pencil"></i>
+                            <span>Compose Message</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mailbox-message.html">
+                            <i class="entypo-attach"></i>
+                            <span>View Message</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
+        </ul>
+
+    </div>
+    <div class="main-content" style="background: linear-gradient(135deg,#ffdeffd2,#fff3cce0,#ff9f88a5)">
+
+        <div class="row">
+
+            <!-- Profile Info and Notifications -->
+            <div class="col-md-6 col-sm-8 clearfix">
+
+            </div>
+
+            <!-- Raw Links -->
+            <div class="col-md-6 col-sm-4 clearfix hidden-xs">
+
+                <ul class="list-inline links-list pull-right">
+                    <li class="sep"></li>
+                    <li>
+                        <a href="/Dreamapp/logOut">
+                            退出登录 <i class="entypo-logout right"></i>
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="col-md-6 col-sm-4 clearfix hidden-xs">
+                <a href="/Dreamapp/home">首页</a> &nbsp / &nbsp <a href="#">数据分析</a>&nbsp / &nbsp<a href="#" style="font-weight: bold">福利词云</a>
+            </div>
+
+        </div>
+        <hr>
+
+        <br>
+        <h2>福利词云</h2><br>
+
+
+
+        <div class="col-md-6">
+
+            <div class="panel panel-danger" data-collapsed="0">
+
+                <!-- panel head -->
+                <div class="panel-heading" style="background-color: rgba(224,90,0,0.35)">
+                    <div class="panel-title">公司福利</div>
+
+                    <div class="panel-options">
+
+                        <a href="#" data-rel="collapse"><i class="entypo-down-open"></i></a>
+                        <a href="#" data-rel="reload"><i class="entypo-arrows-ccw"></i></a>
+
+                    </div>
+                </div>
+
+                <!-- panel body -->
+                <div class="panel-body">
+                    <img style="width: 100%" src="/static/companyTags_cloud2.png">
+
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-md-6">
+
+            <div class="panel panel-danger" data-collapsed="0">
+
+                <!-- panel head -->
+                <div class="panel-heading" style="background-color: rgba(224,90,0,0.35)">
+                    <div class="panel-title">工作岗位</div>
+
+                    <div class="panel-options">
+
+                        <a href="#" data-rel="collapse"><i class="entypo-down-open"></i></a>
+                        <a href="#" data-rel="reload"><i class="entypo-arrows-ccw"></i></a>
+
+                    </div>
+                </div>
+
+                <!-- panel body -->
+                <div class="panel-body">
+                    <img style="width: 100%" src="/static/companyTags_cloud.png">
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-md-6 col-sm-4 clearfix hidden-xs">
+            <!-- Footer -->
+
+
+            <link rel="stylesheet" href="/static/css/jquery-jvectormap-1.2.2.css">
+            <link rel="stylesheet" href="/static/css/rickshaw.min.css">
+
+            <!-- Bottom Scripts -->
+            <script src="/static/js/main-gsap.js"></script>
+            <script src="/static/js/jquery-ui-1.10.3.minimal.min.js"></script>
+            <script src="/static/js/bootstrap.js"></script>
+            <script src="/static/js/joinable.js"></script>
+            <script src="/static/js/resizeable.js"></script>
+            <script src="/static/js/neon-api.js"></script>
+            <script src="/static/js/jquery-jvectormap-1.2.2.min.js"></script>
+            <script src="/static/js/jquery-jvectormap-europe-merc-en.js"></script>
+            <script src="/static/js/jquery-jvectormap-world-mill-en.js"></script>
+            <script src="/static/js/jquery.sparkline.min.js"></script>
+            <script src="/static/js/d3.v3.js"></script>
+            <script src="/static/js/rickshaw.min.js"></script>
+            <script src="/static/js/raphael-min.js"></script>
+            <script src="/static/js/morris.min.js"></script>
+            <script src="/static/js/toastr.js"></script>
+            <script src="/static/js/neon-chat.js"></script>
+            <script src="/static/js/neon-custom.js"></script>
+            <script src="/static/js/neon-demo.js"></script>
+            <script src="/static/js/dropzone.js"></script>
+
+
+            <script src="/static/js/jquery.dataTables.min.js"></script>
+
+
+        </div>
+</body>
+</html>
