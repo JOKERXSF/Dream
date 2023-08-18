@@ -7,3 +7,4 @@ def getNowTime():
     mon = timeFormat.tm_mon
     day = timeFormat.tm_mday
     return year,monthList[mon - 1],day
+

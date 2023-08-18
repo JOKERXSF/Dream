@@ -13,11 +13,48 @@ from . import ut
 from django.core.mail import send_mail, send_mass_mail
 import hashlib
 from .utils import getHomeData
+from .utils import getSelfInfo
+from .utils import getcompanyCharData
+from .utils import getChangePasswordData
 
 
 # Create your views here.
 # 主界面跳转
+# def home(request):
+#     uname = request.session.get('username')
+#     userInfo = User.objects.get(username=uname)
+#     year, month, day = getHomeData.getNowTime()
+#     userCreateData = getHomeData.getUserCreateTime()
+#     top6Users = getHomeData.getUserTop6()
+#     jobsLen,usersLen,educationsTop,salaryTop,salaryMonthTop,addressTop,praticeMax = getHomeData.getAllTags()
+#     jobsPBarData = getHomeData.getAllJobsPBar()
+#     tablaData = getHomeData.getTablaData()
+#
+#     print(year, month, day)
+#     return render(request, 'index.html', {
+#         'userInfo': userInfo,
+#         'dateInfo': {
+#             'year': year,
+#             'month': month,
+#             'day': day
+#         },
+#         'userCreateData':userCreateData,
+#         'top6Users':top6Users,
+#         'tagDic':{
+#             'jobsLen':jobsLen,
+#             'usersLen':usersLen,
+#             'educationsTop':educationsTop,
+#             'salaryTop':salaryTop,
+#             'addressTop':addressTop,
+#             'salaryMonthTop':salaryMonthTop,
+#             'praticeMax':praticeMax
+#         },
+#         'jobsPBarData':jobsPBarData,
+#         'tableData':tablaData
+#     })
 
+
+# 登录界面
 
 def home(request):
     uname = request.session.get('username')
@@ -34,7 +71,6 @@ def home(request):
     })
 
 
-# 登录界面
 def login(request):
     if request.method == 'POST':
         uname = request.POST.get('username')
@@ -222,3 +258,63 @@ def reset_password_confirm(request, user_pk, token):
 def logOut(request):
     request.session.clear()
     return redirect('login')
+
+
+# 个人信息
+def selfInfo(request):
+    uname = request.session.get('username')
+    userInfo = User.objects.get(username=uname)
+    educational, workExperience, jobsTypes = getSelfInfo.getPageData()
+    if request.method == 'POST':
+        getSelfInfo.changeSelfInfo(request.POST, request.FILES)
+        userInfo = User.objects.get(username=uname)
+    return render(request, 'selfInfo.html', {
+        'userInfo': userInfo,
+        'pageData': {
+            'educational': educational,
+            'workExperience': workExperience,
+            'jobsTypes': jobsTypes
+        }
+    })
+
+
+# 修改密码功能
+def changePassword(request):
+    uname = request.session.get('username')
+    userInfo = User.objects.get(username=uname)
+    if request.method == 'GET':
+        return render(request,'changePassword.html',{
+            'username': uname,
+            'userInfo': userInfo,
+        })
+    else:
+        res = getChangePasswordData.changePassword(request.POST,userInfo)
+        if res != None:
+            return redirect('changePassword')
+        userInfo = User.objects.get(username=uname)
+        return render(request, 'changePassword.html', {
+            'username': uname,
+            'userInfo': userInfo,
+        })
+
+
+# 公司情况
+def company(request):
+    uname = request.session.get('username')
+    userInfo = User.objects.get(username=uname)
+    typeList = getcompanyCharData.getPageData()
+    type = 'all'
+    if request.GET.get('type'): type = request.GET.get('type')
+
+    return render(request, 'companyChar.html', {
+        'userInfo': userInfo,
+        'typeList': typeList
+    })
+
+#公司福利
+def companyTags(request):
+    uname = request.session.get('username')
+    userInfo = User.objects.get(username=uname)
+    return render(request, 'companyTags.html', {
+        'userInfo': userInfo
+    })

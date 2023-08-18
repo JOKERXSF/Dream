@@ -10,5 +10,8 @@ urlpatterns = [
     path('home/',views.home,name='home'),
     path('reset_password/',views.reset_password,name='reset_password'),
     path('logOut/',views.logOut,name="logOut"),
-
+    path('selfInfo/', views.selfInfo, name='selfInfo'),
+    path('changePassword/', views.changePassword, name='changePassword'),
+    path('company/', views.company, name="company"),
+    path('companyTags/', views.companyTags, name="companyTags"),
 ]
